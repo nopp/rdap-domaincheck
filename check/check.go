@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -23,8 +22,8 @@ type domainStatus struct {
 	Status     string
 }
 
-// Check - Check expiration date
-func Check(domainURL, option string) {
+// CheckStatus - Return status
+func CheckStatus(domainURL string) {
 
 	var info domain
 	var status domainStatus
@@ -46,13 +45,33 @@ func Check(domainURL, option string) {
 	status.Name = domainURL
 	status.Status = info.Status[0]
 
-	if option == "status" {
-		fmt.Println(status.Status)
-		os.Exit(0)
+	fmt.Println(status.Status)
+}
+
+// CheckExpiration - Check expiration date
+func CheckDiffDays(domainURL, option string) {
+
+	now := time.Now()
+	var info domain
+	var status domainStatus
+
+	resp, err := http.Get("https://rdap.registro.br/domain/" + domainURL)
+
+	if err != nil {
+		panic("RDAP error.")
 	}
 
-	if option == "expiration" {
-		fmt.Println(status.Expiration)
-		os.Exit(0)
+	_ = json.NewDecoder(resp.Body).Decode(&info)
+
+	for _, event := range info.Events {
+		if event.EventAction == "expiration" {
+			status.Expiration = event.EventDate
+		}
 	}
+
+	status.Name = domainURL
+	status.Status = info.Status[0]
+
+	diffDays := int(status.Expiration.Sub(now).Hours() / 24)
+	fmt.Println(diffDays)
 }
