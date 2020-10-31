@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
+	"strconv"
 	"time"
 )
 
@@ -31,7 +33,13 @@ func DomainInfo(domainURL, option string) {
 	resp, err := http.Get("https://rdap.registro.br/domain/" + domainURL)
 
 	if err != nil {
-		panic("RDAP error.")
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+
+	if resp.StatusCode != 200 {
+		fmt.Println("RDAP API error - " + strconv.Itoa(resp.StatusCode))
+		os.Exit(1)
 	}
 
 	_ = json.NewDecoder(resp.Body).Decode(&info)
