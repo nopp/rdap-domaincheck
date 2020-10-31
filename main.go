@@ -18,15 +18,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	switch *option {
-	case "status":
-		check.Status(*domainURL)
-	case "expiration":
-		check.DiffDays(*domainURL, *option)
-	case "date":
-		check.Date(*domainURL, *option)
-	default:
-		flag.PrintDefaults()
-		os.Exit(1)
-	}
+	check.DomainInfo(*domainURL, *option)
+	os.Exit(0)
 }
