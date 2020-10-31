@@ -25,6 +25,11 @@ active
 ```
 
 ```
-./domaincheck -domain uol.com.br -option expiration
+$ ./domaincheck -domain uol.com.br -option expiration
 905
+```
+
+```
+$ ./domaincheck -domain uol.com.br -option date
+2023-04-24 12:00:00 +0000 UTC
 ```
