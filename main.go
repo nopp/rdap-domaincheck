@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	option := flag.String("option", "", "expiration|status (Required)")
-	domainURL := flag.String("domain", "", "example.com (Required)")
+
+	option := flag.String("option", "", "expiration - days between today and expiration date \nstatus - status from registro.br")
+	domainURL := flag.String("domain", "", "example.com")
 	flag.Parse()
 
 	if (*domainURL == "") || (*option == "") {
@@ -17,11 +18,12 @@ func main() {
 	}
 
 	switch *option {
-	case "expiration", "status":
-		check.Check(*domainURL, *option)
+	case "status":
+		check.CheckStatus(*domainURL)
+	case "expiration":
+		check.CheckDiffDays(*domainURL, *option)
 	default:
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
-
 }
