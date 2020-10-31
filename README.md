@@ -16,6 +16,7 @@ $ ./domaincheck
     	example.com
   -option string
     	expiration - days between today and expiration date
+    	date - Expiration date
     	status - status from registro.br
 ```
 Examples:
