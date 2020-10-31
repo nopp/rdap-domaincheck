@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	option := flag.String("option", "", "expiration - days between today and expiration date \ndate - Expiration date\nstatus - status from registro.br")
+	option := flag.String("option", "", "expiration - Days between today and expiration date \ndate - Expiration date\nstatus - Status from registro.br")
 	domainURL := flag.String("domain", "", "example.com")
 
 	flag.Parse()

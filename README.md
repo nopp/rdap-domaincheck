@@ -15,9 +15,9 @@ $ ./domaincheck
   -domain string
     	example.com
   -option string
-    	expiration - days between today and expiration date
+    	expiration - Days between today and expiration date
     	date - Expiration date
-    	status - status from registro.br
+    	status - Status from registro.br
 ```
 Examples:
 ```
