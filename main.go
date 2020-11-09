@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"os"
-	"rdap-domaincheck/check"
+	"rdap-domaincheck/verify"
 )
 
 func main() {
@@ -18,6 +18,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	check.DomainInfo(*domainURL, *option)
+	verify.DomainInfo(*domainURL, *option)
 	os.Exit(0)
 }
