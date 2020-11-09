@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"os"
-	"rdap-expiration/check"
+	"rdap-domaincheck/check"
 )
 
 func main() {

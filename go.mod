@@ -1,3 +1,3 @@
-module rdap-expiration
+module rdap-domaincheck
 
 go 1.14
